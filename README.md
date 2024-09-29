@@ -3,7 +3,15 @@
 [![npm version](https://badge.fury.io/js/next-yandex-metrica.svg)](https://badge.fury.io/js/next-yandex-metrica)
 [![codecov](https://codecov.io/github/reapziq/next-yandex-metrica/branch/main/graph/badge.svg?token=OZ8UX4NPK2)](https://codecov.io/github/reapziq/next-yandex-metrica)
 
-Yandex Metrica integration for Next.js
+Yandex Metrica integration for Next.js v14 (App Router)
+
+> ### Fork reasoning
+>
+> The original repo had:
+>
+> 1. Only v13 (Pages Router) supported
+> 2. No E-commerce support
+> 3. Lack of focus on TypeScript autosuggestions and JSDoc comments
 
 ## Usage
 
@@ -89,3 +97,9 @@ export function ActionButton() {
   );
 }
 ```
+
+## Contributing
+
+Things that are necessary in order to call it **the** Next.js Yandex Metrica integration are listed in [TODO.md](./docs/TODO.md)
+
+If your use-case is not supported, please create an Issue. You'll be implementing it anyway if it's your real use-case, might as well support the community or accidentally find other adopters of that use-case.

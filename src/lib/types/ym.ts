@@ -1,3 +1,3 @@
 import { EventParameters } from './events';
 
-export type YM = (tagID: number, ...parameters: EventParameters) => void;
+export type _YM = (tagID: number, ...parameters: EventParameters) => void;

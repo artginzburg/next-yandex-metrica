@@ -6,40 +6,45 @@ import {
   VisitParameters,
 } from './parameters';
 
-type InitEventParameters = [eventName: 'init', parameters: InitParameters];
+export type InitEventParameters = [eventName: 'init', parameters: InitParameters];
 
-type AddFileExtensionEventParameters = [
+export type AddFileExtensionEventParameters = [
   eventName: 'addFileExtension',
   extensions: string | string[],
 ];
 
-type ExtLinkEventParameters = [eventName: 'extLink', url: string, options?: ExtLinkOptions];
+export type ExtLinkEventParameters = [eventName: 'extLink', url: string, options?: ExtLinkOptions];
 
-type FileEventParameters = [eventName: 'file', url: string, options?: FileOptions];
+export type FileEventParameters = [eventName: 'file', url: string, options?: FileOptions];
 
-type FirstPartyParamsEventParameters = [
+export type FirstPartyParamsEventParameters = [
   eventName: 'firstPartyParams',
   parameters: FirstPartyParamsParameters,
 ];
 
-type GetClientIDEventParameters = [eventName: 'getClientID', cb: (clientID: string) => void];
+export type GetClientIDEventParameters = [eventName: 'getClientID', cb: (clientID: string) => void];
 
-type HitEventParameters = [eventName: 'hit', url: string, options?: HitOptions];
+export type HitEventParameters = [eventName: 'hit', url: string, options?: HitOptions];
 
-type NotBounceEventParameters = [eventName: 'notBounce', options?: NotBounceOptions];
+export type NotBounceEventParameters = [eventName: 'notBounce', options?: NotBounceOptions];
 
-type ParamsEventParameters = [eventName: 'params', parameters: VisitParameters | VisitParameters[]];
+export type ParamsEventParameters = [
+  eventName: 'params',
+  /** Session parameters. @see https://yandex.com/support/metrica/objects/params-method.html */
+  parameters: VisitParameters | VisitParameters[],
+];
 
-type ReachGoalEventParameters = [
+export type ReachGoalEventParameters = [
   eventName: 'reachGoal',
   target: string,
+  /** Session parameters. @see https://yandex.com/support/metrica/objects/params-method.html */
   params?: VisitParameters,
   callback?: () => void,
 ];
 
-type SetUserIDEventParameters = [eventName: 'setUserID', userID: string];
+export type SetUserIDEventParameters = [eventName: 'setUserID', userID: string];
 
-type UserParamsEventParameters = [eventName: 'userParams', parameters: UserParameters];
+export type UserParamsEventParameters = [eventName: 'userParams', parameters: UserParameters];
 
 export type EventParameters =
   | InitEventParameters

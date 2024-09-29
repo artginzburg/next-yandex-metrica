@@ -1,7 +1,20 @@
 import { useCallback, useContext } from 'react';
 
 import { MetricaTagIDContext } from '../components/YandexMetricaProvider';
-import { type EventParameters } from '../lib/types/events';
+import type {
+  AddFileExtensionEventParameters,
+  ExtLinkEventParameters,
+  FileEventParameters,
+  FirstPartyParamsEventParameters,
+  GetClientIDEventParameters,
+  HitEventParameters,
+  InitEventParameters,
+  NotBounceEventParameters,
+  ParamsEventParameters,
+  ReachGoalEventParameters,
+  SetUserIDEventParameters,
+  UserParamsEventParameters,
+} from '../lib/types/events';
 import { type NotBounceOptions } from '../lib/types/options';
 import { type UserParameters, type VisitParameters } from '../lib/types/parameters';
 import { ym } from '../lib/ym';
@@ -17,7 +30,12 @@ export const useMetrica = () => {
   );
 
   const reachGoal = useCallback(
-    (target: string, params?: VisitParameters, callback?: () => void) => {
+    (
+      target: string,
+      /** Session parameters. @see https://yandex.com/support/metrica/objects/params-method.html */
+      params?: VisitParameters,
+      callback?: () => void,
+    ) => {
       ym(tagID, 'reachGoal', target, params, callback);
     },
     [tagID],
@@ -37,8 +55,9 @@ export const useMetrica = () => {
     [tagID],
   );
 
-  const ymEvent = useCallback(
-    (...parameters: EventParameters) => {
+  const ymEvent: YmEventFun = useCallback(
+    (...parameters) => {
+      // @ts-expect-error silly overload logic
       ym(tagID, ...parameters);
     },
     [tagID],
@@ -46,3 +65,41 @@ export const useMetrica = () => {
 
   return { notBounce, reachGoal, setUserID, userParams, ymEvent };
 };
+
+// Overload signatures for each event type
+interface YmEventFun {
+  (...params: InitEventParameters): void;
+}
+interface YmEventFun {
+  (...params: AddFileExtensionEventParameters): void;
+}
+interface YmEventFun {
+  (...params: ExtLinkEventParameters): void;
+}
+interface YmEventFun {
+  (...params: FileEventParameters): void;
+}
+interface YmEventFun {
+  (...params: FirstPartyParamsEventParameters): void;
+}
+interface YmEventFun {
+  (...params: GetClientIDEventParameters): void;
+}
+interface YmEventFun {
+  (...params: HitEventParameters): void;
+}
+interface YmEventFun {
+  (...params: NotBounceEventParameters): void;
+}
+interface YmEventFun {
+  (...params: ParamsEventParameters): void;
+}
+interface YmEventFun {
+  (...params: ReachGoalEventParameters): void;
+}
+interface YmEventFun {
+  (...params: SetUserIDEventParameters): void;
+}
+interface YmEventFun {
+  (...params: UserParamsEventParameters): void;
+}

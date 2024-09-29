@@ -1,30 +1,93 @@
+import { AutocompleteUnknownString } from '@artginzburg/experimental';
+
+/** Session parameters. @see https://yandex.com/support/metrica/objects/params-method.html */
 export interface VisitParameters {
+  /**
+   * Revenue by goal. You can set the cost in currency or Yandex units.
+   *
+   * Type: Double
+   */
   order_price?: number;
+  /**
+   * Use this field if you want to pass the goal cost in currency. Yandex Metrica recognizes three-letter ISO 4217 currency codes
+   *
+   * If a different currency is passed, null values will be sent instead of currencies and amounts.
+   *
+   * @example 'USD'
+   */
   currency?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface UserParameters {
   UserID?: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
+/** @see https://yandex.com/support/metrica/code/counter-initialize.html#counter-initialize__counter_params */
 export interface InitParameters {
+  /**
+   * Accurate bounce rate
+   * @default true
+   */
   accurateTrackBounce?: boolean | number;
+  /**
+   * Whether to record iframe contents without a tag in a child window
+   * @default false
+   */
   childIframe?: boolean;
+  /**
+   * Whether to collect data for a click map
+   * @default true
+   */
   clickmap?: boolean;
+  /**
+   * Whether to disable automatically sending data during tag initialization
+   * @default false
+   */
   defer?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ecommerce?: boolean | string | any[];
+  /**
+   * `true` is inferred as `'dataLayer'`
+   * @default false
+   */
+  ecommerce?: boolean | AutocompleteUnknownString<'dataLayer'> | unknown[];
+  /**
+   * Session parameters transmitted during tag initialization
+   *
+   * To transmit session parameters at any other time, use the [params](https://yandex.com/support/metrica/objects/params-method.html) method. */
   params?: VisitParameters | VisitParameters[];
+  /**
+   * Parameters of site users that are transmitted when initializing the tag
+   *
+   * To transmit user parameters at any other time, use the [userParams](https://yandex.com/support/metrica/objects/user-params.html) method
+   */
   userParams?: UserParameters;
+  /**
+   * Hash tracking in the browser's address bar
+   * @default false
+   */
   trackHash?: boolean;
+  /**
+   * Track clicks on outbound links
+   * @default true
+   */
   trackLinks?: boolean;
+  /** Indicates a trusted domain for recording the contents of a child iframe. Contains the domain address of the parent window */
   trustedDomains?: string[];
+  /**
+   * Tag type. 1 for YAN
+   * @default 0
+   */
   type?: number;
+  /**
+   * Whether to use Session Replay
+   * @default false
+   */
   webvisor?: boolean;
+  /**
+   * Whether to check if the tag is ready
+   * @default false
+   */
   triggerEvent?: boolean;
 }
 
