@@ -7,8 +7,19 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/reapziq/next-yandex-metrica",
-  "author": "Vladislav Doronin <reapziq@gmail.com>",
+  "repository": "artginzburg/next-ym",
+  "funding": "https://github.com/artginzburg/next-ym?sponsor=1",
+  "author": {
+    "name": "Vladislav Doronin",
+    "email": "reapziq@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Art Ginzburg",
+      "email": "me+npm@ginzburg.art",
+      "url": "https://ginzburg.art"
+    }
+  ],
   "license": "MIT",
   "keywords": [
     "next",
@@ -56,5 +67,8 @@
   "peerDependencies": {
     "next": ">=11.0.0",
     "react": ">=17.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
